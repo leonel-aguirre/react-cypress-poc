@@ -5,17 +5,27 @@ const Adder = () => {
   const [secondNumber, setSecondNumber] = React.useState(0)
   const [result, setResult] = React.useState(firstNumber + secondNumber)
 
-  const handleButtonClick = useCallback(() => {
+  // const handleButtonClick = useCallback(() => {
+  //   setResult(firstNumber + secondNumber)
+  // }, [firstNumber, secondNumber])
+
+  const handleButtonClick = () => {
     setResult(firstNumber + secondNumber)
-  }, [firstNumber, secondNumber])
+  }
 
   return (
     <form className="adder">
-      <p>Enter two numbers and click the button to sum them.</p>
+      <p className="adder__instructions">
+        Enter two numbers and click the button to sum them.
+      </p>
 
-      <label htmlFor="firstNumber">First Number: </label>
+      <label htmlFor="firstNumber" className="adder__label">
+        First Number:{" "}
+      </label>
       <input
+        className="adder__input"
         id="firstNumber"
+        name="firstNumber"
         type="number"
         step="1"
         value={firstNumber}
@@ -23,9 +33,13 @@ const Adder = () => {
         onBlur={(e) => setFirstNumber(Number(e.target.value))}
       />
       <br />
-      <label htmlFor="secondNumber">Second Number: </label>
+      <label htmlFor="secondNumber" className="adder__label">
+        Second Number:{" "}
+      </label>
       <input
+        className="adder__input"
         id="secondNumber"
+        name="secondNumber"
         type="number"
         step="1"
         value={secondNumber}
@@ -33,11 +47,16 @@ const Adder = () => {
         onBlur={(e) => setSecondNumber(Number(e.target.value))}
       />
       <br />
-      <button onClick={handleButtonClick} type="button">
+      <button
+        className="adder__add-button"
+        onClick={handleButtonClick}
+        type="button"
+        name="addButton"
+      >
         Add
       </button>
 
-      <p>Result: {result}</p>
+      <p className="adder__result">Result: {result}</p>
     </form>
   )
 }
